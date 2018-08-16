@@ -1,0 +1,23 @@
+{
+  "name": "indecision-app",
+  "version": "1.0.0",
+  "main": "index.js",
+  "author": "Scott Diemer",
+  "license": "MIT",
+  "scripts": {
+    "startBabel": "babel src/app.js --out-file=public/scripts/app.js --presets=env,react --watch",
+    "startServer": "live-server public/",
+    "start": "npm run startBabel & npm run startServer"
+  },
+  "dependencies": {
+    "babel-preset-env": "1.5.2",
+    "babel-preset-react": "6.24.1"
+  },
+  "devDependencies": {
+    "eslint": "^4.19.1",
+    "eslint-config-airbnb": "^17.1.0",
+    "eslint-plugin-import": "^2.13.0",
+    "eslint-plugin-jsx-a11y": "^6.1.1",
+    "eslint-plugin-react": "^7.11.0"
+  }
+}
