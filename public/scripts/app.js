@@ -84,7 +84,7 @@ var templateTwo = React.createElement(
   getLocation(user.location)
 );
 
-// Create a templateTwo var JSX expression
+// Create a templateTwo const JSX expression
 // div 
 // h1 - > Scott Diemer
 // p -> Age: 41

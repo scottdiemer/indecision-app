@@ -4,7 +4,7 @@ console.log("app.js is running");
 // babel src/app.js --out-file=public/scripts/app.js --presets=env,react --watch
 
 
-var app = {
+const app = {
   title: 'Indecision App',
   subtitle: 'Put your life in the hands of a computer',
   options: ['One', 'Two']
@@ -29,7 +29,7 @@ const template = (
   </div>
 );
 
-var user = {
+const user = {
   name: 'Scott',
   age: 41,
   location: 'Orlando'
@@ -48,7 +48,7 @@ Location:
   } 
 }
 
-var templateTwo = (
+const templateTwo = (
   <div>
     <h1>{user.name ? user.name : 'Anonymous'}</h1>
     {(user.age && user.age >= 18) && (
@@ -63,7 +63,7 @@ Age:
   </div>
 );
 
-// Create a templateTwo var JSX expression
+// Create a templateTwo const JSX expression
 // div 
 // h1 - > Scott Diemer
 // p -> Age: 41
