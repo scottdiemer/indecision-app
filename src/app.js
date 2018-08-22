@@ -29,47 +29,31 @@ const template = (
   </div>
 );
 
-const user = {
-  name: 'Scott',
-  age: 41,
-  location: 'Orlando'
-}
+let count = 0;
+const addOne = () => {
+  console.log('addOne');
+};
 
-function getLocation(location) {
-  if (location) {
-    return (
-      <p>
-Location:
-        {' '} 
-        {' '}
-        {location}
-      </p>
-);
-  } 
-}
+const minusOne = () => {
+  console.log('minusOne');
+};
+
+const reset = () => {
+  console.log('reset');
+};
 
 const templateTwo = (
   <div>
-    <h1>{user.name ? user.name : 'Anonymous'}</h1>
-    {(user.age && user.age >= 18) && (
-    <p>
-Age:
-      {' '} 
-      {' '}
-      {user.age}
-    </p>
-)}
-    {getLocation(user.location)}
+    <h1>
+Count:
+      {count}
+    </h1>
+    <button onClick={addOne}>+1</button>
+    <button onClick={minusOne}>-1</button>
+    <button onClick={reset}>Reset</button>
   </div>
 );
 
-// Create a templateTwo const JSX expression
-// div 
-// h1 - > Scott Diemer
-// p -> Age: 41
-// p -> Location: Orlando
-// Render templateTwo instead of template
-
 const appRoot = document.getElementById("app");
 
-ReactDOM.render(template, appRoot);
+ReactDOM.render(templateTwo, appRoot);
