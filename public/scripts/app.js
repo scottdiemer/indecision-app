@@ -3,7 +3,7 @@
 console.log("app.js is running");
 
 // TODO: Run following command so babel can convert code
-// babel src/app.js --out-file=public/scripts/app.js --presets=env,react --watch
+// babel src/playground/build-it-visible.js --out-file=public/scripts/build-it-visible.js --presets=env,react --watch & live-server public
 
 
 var app = {
@@ -29,7 +29,15 @@ var onRemoveAll = function onRemoveAll() {
   render();
 };
 
+var onMakeDecision = function onMakeDecision() {
+  var randomNum = Math.floor(Math.random() * app.options.length);
+  var option = app.options[randomNum];
+  alert(option);
+};
+
 var appRoot = document.getElementById("app");
+
+var numbers = [55, 101, 1000];
 
 var render = function render() {
   // JSX - JavaScript XML
@@ -52,9 +60,9 @@ var render = function render() {
       app.options.length > 0 ? 'Here are your options' : 'No options'
     ),
     React.createElement(
-      'p',
-      null,
-      app.options.length
+      'button',
+      { disabled: app.options.length === 0, onClick: onMakeDecision },
+      'What should I do?'
     ),
     React.createElement(
       'button',
@@ -64,16 +72,13 @@ var render = function render() {
     React.createElement(
       'ol',
       null,
-      React.createElement(
-        'li',
-        null,
-        'Item One'
-      ),
-      React.createElement(
-        'li',
-        null,
-        'Item Two'
-      )
+      app.options.map(function (option) {
+        return React.createElement(
+          'li',
+          { key: option },
+          option
+        );
+      })
     ),
     React.createElement(
       'form',

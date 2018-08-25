@@ -1,7 +1,7 @@
 console.log("app.js is running");
 
 // TODO: Run following command so babel can convert code
-// babel src/app.js --out-file=public/scripts/app.js --presets=env,react --watch
+// babel src/playground/build-it-visible.js --out-file=public/scripts/build-it-visible.js --presets=env,react --watch & live-server public
 
 
 const app = {
@@ -27,7 +27,15 @@ const onRemoveAll = () => {
   render();
 };
 
+const onMakeDecision = () => {
+  const randomNum = Math.floor(Math.random() * app.options.length);
+  const option = app.options[randomNum];
+  alert(option);
+};
+
 const appRoot = document.getElementById("app");
+
+const numbers = [55, 101, 1000];
 
 const render = () => {
   // JSX - JavaScript XML
@@ -38,15 +46,14 @@ const render = () => {
       </h1>
       {app.subtitle && <p>{app.subtitle}</p>}
       <p>{app.options.length > 0 ? 'Here are your options' : 'No options'}</p>
-      <p>{app.options.length}</p>
+      <button disabled={app.options.length === 0} onClick={onMakeDecision}>What should I do?</button>
       <button onClick={onRemoveAll}>Remove All</button>
       <ol>
-        <li>
-          Item One
-        </li>
-        <li>
-          Item Two
-        </li>
+        {
+          app.options.map((option) => <li key={option}>{option}</li>
+)
+        }
+        
       </ol>
       <form onSubmit={onFormSubmit}>
         <input type='text' name='option' />
