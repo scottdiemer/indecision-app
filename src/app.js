@@ -1,7 +1,7 @@
 console.log("app.js is running");
 
 // TODO: Run following command so babel can convert code
-// babel src/playground/build-it-visible.js --out-file=public/scripts/build-it-visible.js --presets=env,react --watch & live-server public
+// babel src/playground/build-it-visible.js --out-file=public/scripts/app.js --presets=env,react --watch & live-server public
 
 
 const app = {
