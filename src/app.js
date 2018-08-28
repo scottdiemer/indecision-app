@@ -1,68 +1,69 @@
-console.log("app.js is running");
-
-// TODO: Run following command so babel can convert code
-// babel src/playground/build-it-visible.js --out-file=public/scripts/app.js --presets=env,react --watch & live-server public
-
-
-const app = {
-  title: 'Indecision App',
-  subtitle: 'Put your life in the hands of a computer',
-  options: []
+class IndecisionApp extends React.Component {
+  render() {
+    const title = 'Indecision';
+    const subtitle = 'Put your life in the hands of a computer'
+    const options = ['Thing one', 'Thing two', 'Thing four'];
+    return (
+      <div>
+        <Header title={title} subtitle={subtitle} />
+        <Action />
+        <Options options={options} />
+        <AddOption />
+      </div>
+    )
+  }
 }
-
-const onFormSubmit = (e) => {
-  e.preventDefault();
-
-  const option = e.target.elements.option.value;
-
-  if(option) {
-    app.options.push(option);
-    e.target.elements.option.value = '';
-    render();
+class Header extends React.Component {
+  render() {
+    return (
+      <div>
+        <h1>{this.props.title}</h1>
+        <h2>{this.props.subtitle}</h2>
+      </div>
+    );
   }
 }
 
-const onRemoveAll = () => {
-  app.options = [];
-  render();
-};
+class Action extends React.Component {
+  render() {
+    return (
+      <div>
+        <button>What should I do?</button>
+      </div>
+    );
+  }
+}
 
-const onMakeDecision = () => {
-  const randomNum = Math.floor(Math.random() * app.options.length);
-  const option = app.options[randomNum];
-  alert(option);
-};
-
-const appRoot = document.getElementById("app");
-
-const numbers = [55, 101, 1000];
-
-const render = () => {
-  // JSX - JavaScript XML
-  const template = (
-    <div>
-      <h1>
-        {app.title}
-      </h1>
-      {app.subtitle && <p>{app.subtitle}</p>}
-      <p>{app.options.length > 0 ? 'Here are your options' : 'No options'}</p>
-      <button disabled={app.options.length === 0} onClick={onMakeDecision}>What should I do?</button>
-      <button onClick={onRemoveAll}>Remove All</button>
-      <ol>
+class Options extends React.Component {
+  render() {
+    return (
+      <div>
         {
-          app.options.map((option) => <li key={option}>{option}</li>
-)
+          this.props.options.map((option) => <Option key={option} optionText={option} />)
         }
-        
-      </ol>
-      <form onSubmit={onFormSubmit}>
-        <input type='text' name='option' />
-        <button>Add Option</button>
-      </form>
-    </div>
-  );
+      </div>
+    );
+  }
+}
 
-  ReactDOM.render(template, appRoot);
-};
+class Option extends React.Component {
+  render() {
+    return (
+      <div>
+        {this.props.optionText}
+      </div>
+    )
+  }
+}
 
-render()
+class AddOption extends React.Component {
+  render() {
+    return (
+      <div>
+        AddOption component here
+      </div>
+    );
+  }
+}
+
+ReactDOM.render(<IndecisionApp />, document.getElementById('app'));
