@@ -8,28 +8,49 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-var VisibilityToggle = function (_React$Component) {
-  _inherits(VisibilityToggle, _React$Component);
+// Count - setup default prop value to 0
 
-  function VisibilityToggle(props) {
-    _classCallCheck(this, VisibilityToggle);
+var Counter = function (_React$Component) {
+  _inherits(Counter, _React$Component);
 
-    var _this = _possibleConstructorReturn(this, (VisibilityToggle.__proto__ || Object.getPrototypeOf(VisibilityToggle)).call(this, props));
+  function Counter(props) {
+    _classCallCheck(this, Counter);
 
-    _this.handleToggleVisibility = _this.handleToggleVisibility.bind(_this);
+    var _this = _possibleConstructorReturn(this, (Counter.__proto__ || Object.getPrototypeOf(Counter)).call(this, props));
+
+    _this.handleAddOne = _this.handleAddOne.bind(_this);
+    _this.handleMinusOne = _this.handleMinusOne.bind(_this);
+    _this.handleReset = _this.handleReset.bind(_this);
     _this.state = {
-      visibility: false
+      count: props.count
     };
-
     return _this;
   }
 
-  _createClass(VisibilityToggle, [{
-    key: 'handleToggleVisibility',
-    value: function handleToggleVisibility() {
+  _createClass(Counter, [{
+    key: 'handleAddOne',
+    value: function handleAddOne() {
       this.setState(function (prevState) {
         return {
-          visibility: !prevState.visibility
+          count: prevState.count + 1
+        };
+      });
+    }
+  }, {
+    key: 'handleMinusOne',
+    value: function handleMinusOne() {
+      this.setState(function (prevState) {
+        return {
+          count: prevState.count - 1
+        };
+      });
+    }
+  }, {
+    key: 'handleReset',
+    value: function handleReset() {
+      this.setState(function () {
+        return {
+          count: 0
         };
       });
     }
@@ -42,27 +63,35 @@ var VisibilityToggle = function (_React$Component) {
         React.createElement(
           'h1',
           null,
-          'Visbility Toggle'
+          'Count:',
+          ' ',
+          ' ',
+          this.state.count
         ),
         React.createElement(
           'button',
-          { onClick: this.handleToggleVisibility },
-          this.state.visibility ? 'Hide Details' : 'Show Details'
+          { onClick: this.handleAddOne },
+          '+1'
         ),
-        this.state.visibility && React.createElement(
-          'div',
-          null,
-          React.createElement(
-            'p',
-            null,
-            'Hey, These are some details you can now see!'
-          )
+        React.createElement(
+          'button',
+          { onClick: this.handleMinusOne },
+          '-1'
+        ),
+        React.createElement(
+          'button',
+          { onClick: this.handleReset },
+          'reset'
         )
       );
     }
   }]);
 
-  return VisibilityToggle;
+  return Counter;
 }(React.Component);
 
-ReactDOM.render(React.createElement(VisibilityToggle, null), document.getElementById('app'));
+Counter.defaultProps = {
+  count: 0
+};
+
+ReactDOM.render(React.createElement(Counter, null), document.getElementById('app'));
